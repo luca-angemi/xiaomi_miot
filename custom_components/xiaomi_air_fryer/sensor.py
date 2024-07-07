@@ -41,7 +41,7 @@ SENSOR_TYPES_MAF: tuple[SensorEntityDescription, ...] = (
     ),
     SensorEntityDescription(
         key="left_time",
-        name="Left Time",
+        name="Time Left",
         device_class=SensorDeviceClass.DURATION,
         native_unit_of_measurement=UnitOfTime.MINUTES,
     ),
