@@ -41,3 +41,5 @@ Restart HA.
 2. Enter your Xiaomi Account and Password
 3. Select the Air Fryer device that you want to integrate.
 
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/luca.angemi)
