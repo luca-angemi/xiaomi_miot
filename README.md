@@ -21,7 +21,7 @@ This is a custom component for Home Assistant to integrate the Xiaomi Air Fryer.
   - status
   - target_time
   - target_temperature
-  - left_time
+  - time_left
 * Switch
   -  Start/Stop
 * Select
