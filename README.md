@@ -1,6 +1,6 @@
 # Xiaomi Air Fryer
 
-This is a custom component for home assistant to integrate the Xiaomi Air Fryer.
+This is a custom component for Home Assistant to integrate the Xiaomi Air Fryer.
 
 ## Supported devices
 
@@ -37,7 +37,7 @@ Restart HA.
 ## Setup
 
 
-1. With GUI. Configuration > Integration > Add Integration > Xiaomi Air Fryer
+1. Configuration > Integration > Add Integration > Xiaomi Air Fryer
 2. Enter your Xiaomi Account and Password
 3. Select the Air Fryer device that you want to integrate.
 
