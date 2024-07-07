@@ -14,9 +14,9 @@ This is a custom component for home assistant to integrate the Xiaomi Air Fryer.
 ### Mi Smart Air Fryer
 
 * Buttons
- - Start cooking
- - Cancel cooking
- - Pause cooking
+  - Start cooking
+  - Cancel cooking
+  - Pause cooking
 * Sensors
   - status
   - target_time
