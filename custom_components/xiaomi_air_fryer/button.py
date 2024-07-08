@@ -23,6 +23,10 @@ BUTTON_TYPES_MAF: tuple[ButtonEntityDescription, ...] = (
         key="pause",
         name="Pause Cooking",
     ),
+    ButtonEntityDescription(
+        key="resume_cooking",
+        name="Resume Cooking",
+    ),
 )
 
 
