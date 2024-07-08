@@ -25,7 +25,6 @@ class AirFyerCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(seconds=30),
         )
         self.api = api
-        self._state = None
 
     async def _async_update_data(self):
         """Fetch data from Rova API."""
