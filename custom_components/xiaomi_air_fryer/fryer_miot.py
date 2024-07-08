@@ -10,103 +10,16 @@ from miio.device import DeviceStatus
 from miio.miot_device import MiotDevice
 
 from .const import (
-    MODEL_FRYER_534,
-    MODEL_FRYER_MAF01,
-    MODEL_FRYER_MAF02,
-    MODEL_FRYER_MAF03,
     MODEL_FRYER_MAF05A,
-    MODEL_FRYER_MAF07,
     MODEL_FRYER_MAF10A,
-    MODEL_FRYER_SCK501,
-    MODEL_FRYER_SCK505,
-    MODEL_FRYER_YBAF01,
+
 )
 
 _LOGGER = logging.getLogger(__name__)
 
 
-# http://miot-spec.org/miot-spec-v2/instance?type=urn:miot-spec-v2:device:air-fryer:0000A0A4:careli-maf02:1
+# http://miot-spec.org/miot-spec-v2/instance?type=urn:miot-spec-v2:device:air-fryer:0000A0A4:careli-maf10a:1
 MIOT_MAPPING = {
-    MODEL_FRYER_MAF01: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 5},  # read, notify
-        "recipe_id": {"siid": 3, "piid": 1},  # read, notify, write
-        "work_time": {"siid": 3, "piid": 3},  # write
-        "work_temp": {"siid": 3, "piid": 4},  # write
-        "appoint_time": {"siid": 3, "piid": 5},  # read, notify, write
-        "food_quanty": {"siid": 3, "piid": 6},  # read, notify, write
-        "preheat_switch": {"siid": 3, "piid": 7},  # read, notify, write
-        "appoint_time_left": {"siid": 3, "piid": 8},  # read, notify, write
-        "turn_pot": {"siid": 3, "piid": 10},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
-        "start_custom_cook": {"siid": 3, "aiid": 1},
-        "resume_cooking": {"siid": 3, "aiid": 2},
-    },
-    MODEL_FRYER_MAF02: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 5},  # read, notify
-        "recipe_id": {"siid": 3, "piid": 1},  # read, notify, write
-        "work_time": {"siid": 3, "piid": 3},  # write
-        "work_temp": {"siid": 3, "piid": 4},  # write
-        "appoint_time": {"siid": 3, "piid": 5},  # read, notify, write
-        "food_quanty": {"siid": 3, "piid": 6},  # read, notify, write
-        "preheat_switch": {"siid": 3, "piid": 7},  # read, notify, write
-        "appoint_time_left": {"siid": 3, "piid": 8},  # read, notify, write
-        "turn_pot": {"siid": 3, "piid": 10},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
-        "start_custom_cook": {"siid": 3, "aiid": 1},
-        "resume_cooking": {"siid": 3, "aiid": 2},
-    },
-    MODEL_FRYER_MAF03: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 5},  # read, notify
-        "recipe_id": {"siid": 3, "piid": 1},  # read, notify, write
-        "work_time": {"siid": 3, "piid": 3},  # write
-        "work_temp": {"siid": 3, "piid": 4},  # write
-        "appoint_time": {"siid": 3, "piid": 5},  # read, notify, write
-        "food_quanty": {"siid": 3, "piid": 6},  # read, notify, write
-        "preheat_switch": {"siid": 3, "piid": 7},  # read, notify, write
-        "appoint_time_left": {"siid": 3, "piid": 8},  # read, notify, write
-        "turn_pot": {"siid": 3, "piid": 10},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
-        "start_custom_cook": {"siid": 3, "aiid": 1},
-        "resume_cooking": {"siid": 3, "aiid": 2},
-    },
-    MODEL_FRYER_MAF07: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 5},  # read, notify
-        "recipe_id": {"siid": 3, "piid": 1},  # read, notify, write
-        "work_time": {"siid": 3, "piid": 3},  # write
-        "work_temp": {"siid": 3, "piid": 4},  # write
-        "appoint_time": {"siid": 3, "piid": 5},  # read, notify, write
-        "food_quanty": {"siid": 3, "piid": 6},  # read, notify, write
-        "preheat_switch": {"siid": 3, "piid": 7},  # read, notify, write
-        "appoint_time_left": {"siid": 3, "piid": 8},  # read, notify, write
-        "turn_pot": {"siid": 3, "piid": 10},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
-        "start_custom_cook": {"siid": 3, "aiid": 1},
-        "resume_cooking": {"siid": 3, "aiid": 2},
-    },
     MODEL_FRYER_MAF10A: {
         "status": {"siid": 2, "piid": 1},  # read, notify
         "device_fault": {"siid": 2, "piid": 2},  # read, notify
@@ -128,19 +41,8 @@ MIOT_MAPPING = {
         "start_cook": {"siid": 2, "aiid": 1},
         "cancel_cooking": {"siid": 2, "aiid": 2},
         "pause": {"siid": 2, "aiid": 3},
-        "resume_cook": {"siid": 2, "aiid": 4},
+        "resume_cooking": {"siid": 2, "aiid": 4},
         "start_recipe_cook": {"siid": 2, "aiid": 5},
-    },
-    MODEL_FRYER_YBAF01: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 5},  # read, notify
-        "mode": {"siid": 2, "piid": 7},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
     },
     MODEL_FRYER_MAF05A: {
         "status": {"siid": 2, "piid": 1},  # read, notify
@@ -161,47 +63,7 @@ MIOT_MAPPING = {
         "pause": {"siid": 2, "aiid": 3},
         "start_custom_cook": {"siid": 3, "aiid": 1},
         "resume_cooking": {"siid": 3, "aiid": 2},
-    },
-    MODEL_FRYER_534: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "switch_status": {"siid": 2, "piid": 5},  # read, notify, write
-        "mode": {"siid": 2, "piid": 6},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 7},  # read, notify
-        "work_temp": {"siid": 2, "piid": 8},  # read, notify
-        "preheat_switch": {"siid": 2, "piid": 10},  # read, notify, write
-        "recipe_id": {"siid": 2, "piid": 11},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-        "cancel_cooking": {"siid": 2, "aiid": 2},
-        "pause": {"siid": 2, "aiid": 3},
-        "start_custom_cook": {"siid": 2, "aiid": 4},
-    },
-    # http://miot-spec.org/miot-spec-v2/instance?type=urn:miot-spec-v2:device:air-fryer:0000A0A4:silen-sck501:1
-    MODEL_FRYER_SCK501: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "switch_status": {"siid": 2, "piid": 5},  # read, notify, write
-        "mode": {"siid": 2, "piid": 6},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 7},  # read, notify
-        "start": {"siid": 3, "piid": 1},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-    },
-    # http://miot-spec.org/miot-spec-v2/instance?type=urn:miot-spec-v2:device:air-fryer:0000A0A4:silen-sck505:1
-    MODEL_FRYER_SCK505: {
-        "status": {"siid": 2, "piid": 1},  # read, notify
-        "device_fault": {"siid": 2, "piid": 2},  # read, notify
-        "target_time": {"siid": 2, "piid": 3},  # read, notify, write
-        "target_temperature": {"siid": 2, "piid": 4},  # read, notify, write
-        "switch_status": {"siid": 2, "piid": 5},  # read, notify, write
-        "mode": {"siid": 2, "piid": 6},  # read, notify, write
-        "left_time": {"siid": 2, "piid": 7},  # read, notify
-        "start": {"siid": 3, "piid": 1},  # read, notify, write
-        "start_cook": {"siid": 2, "aiid": 1},
-    },
+    }
 }
 
 
@@ -216,16 +78,16 @@ class Status(enum.Enum):
     Shutdown = 0
     Standby = 1
     Pause = 2
-    Appointment = 3
+    Delay = 3
     Cooking = 4
     Preheat = 5
     Cooked = 6
     PreheatFinish = 7
     PreheatPause = 8
-    PauseDoor = 9
+    TurnPotPause = 9
     Keepwarm = 10
-    KeepwarmPause = 11
-    KeepwarmFinish = 12
+    KeepWarmPause = 11
+    KeepWarmFinish = 12
     CrispyRoast = 13
     Degrease = 14
 
@@ -256,7 +118,7 @@ class TurnPot(enum.Enum):
 
     Unknown = -1
     NotTurnPot = 0
-    SwitchOff = 1
+    NoNeed = 1
     TurnPot = 2
 
 
@@ -270,7 +132,7 @@ class PreheatSwitch(enum.Enum):
 
 
 class CookingMode(enum.Enum):
-    """riboh."""
+    """Cooking Mode."""
 
     Manual = 0
     FrenchFries = 1
@@ -311,7 +173,7 @@ class FryerStatusMiot(DeviceStatus):
     @property
     def mode(self) -> int:
         """Mode."""
-        return self.data.get("mode")
+        return CookingMode(self.data.get("mode"))
 
     @property
     def status(self) -> int:
@@ -349,7 +211,7 @@ class FryerStatusMiot(DeviceStatus):
     @property
     def recipe_id(self) -> str:
         """Recipe ID."""
-        return self.data["recipe_id"]
+        return CookingMode(int(self.data.get("recipe_id")[1:]))
 
     @property
     def work_time(self) -> int:
@@ -390,6 +252,11 @@ class FryerStatusMiot(DeviceStatus):
         return self.data["appoint_time_left"]
 
     @property
+    def reservation_left_time(self) -> int:
+        """Appoint Time."""
+        return self.data["reservation_left_time"]
+
+    @property
     def turn_pot(self) -> TurnPot:
         """Turn Pot."""
         try:
@@ -402,7 +269,7 @@ class FryerStatusMiot(DeviceStatus):
 class FryerMiot(MiotDevice):
     """Interface for AirFryer (careli.fryer.maf02)."""
 
-    mapping = MIOT_MAPPING[MODEL_FRYER_MAF02]
+    mapping = None
 
     def __init__(
         self,
@@ -411,7 +278,7 @@ class FryerMiot(MiotDevice):
         start_id: int = 0,
         debug: int = 0,
         lazy_discover: bool = True,
-        model: str = MODEL_FRYER_MAF02,
+        model: str = MODEL_FRYER_MAF10A,
     ) -> None:
         """Affa."""
         if model not in MIOT_MAPPING:
@@ -419,6 +286,7 @@ class FryerMiot(MiotDevice):
 
         super().__init__(ip, token, start_id, debug, lazy_discover)
         self._model = model
+        self.mapping = MIOT_MAPPING[model]
 
     @command(
         default_output=format_output(
@@ -516,12 +384,6 @@ class FryerMiot(MiotDevice):
         return self.call_action("pause")
 
     @command()
-    def action(self, act: str) -> None:
-        """Action cook."""
-        return self.call_action(act)
-
-
-    @command()
     def start_custom_cook(self, mode) -> None:
         """Start custom cook."""
         if mode not in [1, 3, 4, 5, 6, 7]:
@@ -533,20 +395,3 @@ class FryerMiot(MiotDevice):
         """Resume cooking."""
         return self.call_action("resume_cooking")
 
-
-class FryerMiotYBAF(FryerMiot):
-    """Interface for AirFryer (careli.fryer.maf02)."""
-
-    mapping = MIOT_MAPPING[MODEL_FRYER_YBAF01]
-
-
-class FryerMiotSCK(FryerMiot):
-    """Interface for AirFryer (careli.fryer.maf02)."""
-
-    mapping = MIOT_MAPPING[MODEL_FRYER_SCK505]
-
-
-class FryerMiotMi(FryerMiot):
-    """Interface for AirFryer (careli.fryer.maf02)."""
-
-    mapping = MIOT_MAPPING[MODEL_FRYER_534]
