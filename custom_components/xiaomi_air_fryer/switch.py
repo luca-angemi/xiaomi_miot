@@ -66,7 +66,8 @@ class XiaomiAirFryer(AirFryerEntity, SwitchEntity):
     @callback
     def _handle_coordinator_update(self):
         """Fetch state from the device."""
-        self._state = self.coordinator.data.is_on
+        if self.coordinator.data is not None:
+            self._state = self.coordinator.data.is_on
         self.async_write_ha_state()
 
     async def async_turn_on(self, **kwargs: Any) -> None:
