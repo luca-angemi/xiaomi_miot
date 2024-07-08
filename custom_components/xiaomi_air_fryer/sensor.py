@@ -14,7 +14,7 @@ from homeassistant.const import UnitOfTemperature, UnitOfTime
 from homeassistant.core import HomeAssistant
 
 from .entity import AirFryerEntity
-from .fryer_miot import Status
+from .fryer_miot import Status, CookingMode, TurnPot
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -25,6 +25,18 @@ SENSOR_TYPES_MAF: tuple[SensorEntityDescription, ...] = (
         name="Status",
         device_class=SensorDeviceClass.ENUM,
         options=[status.name for status in Status],
+    ),
+    SensorEntityDescription(
+        key="turn_pot",
+        name="Turn Pot",
+        device_class=SensorDeviceClass.ENUM,
+        options=[turns.name for turns in TurnPot],
+    ),
+    SensorEntityDescription(
+        key="mode",
+        name="Cooking Mode",
+        device_class=SensorDeviceClass.ENUM,
+        options=[mode.name for mode in CookingMode],
     ),
     SensorEntityDescription(
         key="target_time",
