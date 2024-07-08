@@ -222,7 +222,7 @@ class Status(enum.Enum):
     Cooked = 6
     PreheatFinish = 7
     PreheatPause = 8
-    Pause2 = 9
+    PauseDoor = 9
     Keepwarm = 10
     KeepwarmPause = 11
     KeepwarmFinish = 12
