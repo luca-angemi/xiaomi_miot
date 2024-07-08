@@ -46,7 +46,7 @@ class XiaomiAirFryer(AirFryerEntity, SwitchEntity):
         """Initialize a D-Link Power Plug entity."""
         super().__init__(config_entry, description, coordinator)
         
-        self._state = self.coordinator.data.is_on
+        self._state = None
 
     @property
     def icon(self) -> str | None:
